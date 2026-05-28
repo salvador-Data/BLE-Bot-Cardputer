@@ -9,28 +9,32 @@ Hacker Planet LLC ships two Philadelphia-assembled Cardputer SKUs (see [PRODUCT_
 
 ## DIY flash
 
-1. Build **M5 OS** base from this repo (`pio run -e m5stack-cardputer -t upload`).
-2. Add firmware packages to your manifest (`data/manifest.example.json`):
+1. Build **M5 OS** base from [M5_OS-Cardputer](https://github.com/salvador-Data/M5_OS-Cardputer) (`pio run -e m5stack-cardputer -t upload`).
+2. Build app firmware from the product repos (PlatformIO env `m5stack-cardputer` in each).
+3. Add firmware packages to your manifest (`data/manifest.example.json` on M5 OS):
 
 ```json
 {
   "name": "Remote Possibility",
   "version": "1.0.0",
-  "url": "https://github.com/salvador-Data/cyberThreatGotchi/raw/main/scripts/cardputer/platformio/.pio/build/remote_possibility/firmware.bin",
+  "url": "https://github.com/salvador-Data/Remote-Possibility/releases/download/v1.0.0/remote_possibility.bin",
   "description": "CTG field remote status client"
 },
 {
   "name": "BLE Bot",
   "version": "1.0.0",
-  "url": "https://github.com/salvador-Data/M5_OS-Cardputer/raw/main/data/firmware/ble_bot.bin",
+  "url": "https://github.com/salvador-Data/BLE-Bot-Cardputer/releases/download/v1.0.0/ble_bot.bin",
   "description": "Authorized BLE lab scout"
 }
 ```
 
-3. PlatformIO CTG client reference → [cyberThreatGotchi/scripts/cardputer](https://github.com/salvador-Data/cyberThreatGotchi/tree/main/scripts/cardputer).
+Until a release is tagged, build from source:
+
+- Remote Possibility → [Remote-Possibility/platformio](https://github.com/salvador-Data/Remote-Possibility/tree/main/platformio)
+- BLE Bot → [BLE-Bot-Cardputer/platformio](https://github.com/salvador-Data/BLE-Bot-Cardputer/tree/main/platformio)
 
 ## Shop
 
-- [cardputer.html](https://salvador-Data.github.io/cyberThreatGotchi/cardputer.html) · `#remote-possibility` · `#ble-bot`
+- [cardputer.html](https://hackerplanet.dev/cardputer.html) · `#remote-possibility` · `#ble-bot`
 
 *Authorized networks only.*

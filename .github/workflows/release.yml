@@ -1,0 +1,33 @@
+name: Release firmware
+
+on:
+  push:
+    tags:
+      - "v*"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build-release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/cache@v4
+        with:
+          path: ~/.platformio
+          key: ${{ runner.os }}-pio-ble-bot
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Install PlatformIO
+        run: pip install platformio
+      - name: Build Cardputer firmware
+        working-directory: platformio
+        run: pio run -e m5stack-cardputer
+      - name: Publish GitHub release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: platformio/.pio/build/m5stack-cardputer/firmware.bin
+          generate_release_notes: true
